@@ -1,24 +1,30 @@
 
 public class Test3 {
-
-//	¹®Á¦ ¼³¸í
-//	´Ü¾î sÀÇ °¡¿îµ¥ ±ÛÀÚ¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö, solutionÀ» ¸¸µé¾î º¸¼¼¿ä. ´Ü¾îÀÇ ±æÀÌ°¡ Â¦¼ö¶ó¸é °¡¿îµ¥ µÎ±ÛÀÚ¸¦ ¹ÝÈ¯ÇÏ¸é µË´Ï´Ù.
-//
-//	ÀçÇÑ»çÇ×
-//	s´Â ±æÀÌ°¡ 1 ÀÌ»ó, 100ÀÌÇÏÀÎ ½ºÆ®¸µÀÔ´Ï´Ù.
 	
-	public static String solution(String s) {
-	      
-      	int x = s.length()/2+1;
-		if(s.length() % 2 != 0) {
-			return s.substring(x-1, x);
-		} else {
-			return s.substring(x-2,x);
+//	ë¬¸ì œ ì„¤ëª…
+//	ë‘ ì •ìˆ˜ a, bê°€ ì£¼ì–´ì¡Œì„ ë•Œ aì™€ b ì‚¬ì´ì— ì†í•œ ëª¨ë“  ì •ìˆ˜ì˜ í•©ì„ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜, solutionì„ ì™„ì„±í•˜ì„¸ìš”.
+//	ì˜ˆë¥¼ ë“¤ì–´ a = 3, b = 5ì¸ ê²½ìš°, 3 + 4 + 5 = 12ì´ë¯€ë¡œ 12ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
+//
+//	ì œí•œ ì¡°ê±´
+//	aì™€ bê°€ ê°™ì€ ê²½ìš°ëŠ” ë‘˜ ì¤‘ ì•„ë¬´ ìˆ˜ë‚˜ ë¦¬í„´í•˜ì„¸ìš”.
+//	aì™€ bëŠ” -10,000,000 ì´ìƒ 10,000,000 ì´í•˜ì¸ ì •ìˆ˜ìž…ë‹ˆë‹¤.
+//	aì™€ bì˜ ëŒ€ì†Œê´€ê³„ëŠ” ì •í•´ì ¸ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	
+  	public static long solution(int a, int b) {
+		
+		long answer = 0;
+        int a1 = 0;
+		if(a>b) {a1=a;a=b;b=a1;}
+		for (int i=a; i<=b; i++) {
+			answer += i;
 		}
-	}
+		return answer;
+	} 	
 
 	public static void main(String[] args) {
-		System.out.println(solution("abcde"));
-		System.out.println(solution("qwer"));
+		System.out.println(solution(3, 5));
+		System.out.println(solution(3, 3));
+		System.out.println(solution(5, 3));
 	}
+
 }
