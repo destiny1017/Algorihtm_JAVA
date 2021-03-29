@@ -1,5 +1,5 @@
 
-public class Test12 {
+public class Test13 {
 	
 //	# 콜라츠 추측
 //	
