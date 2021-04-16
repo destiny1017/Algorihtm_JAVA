@@ -1,5 +1,5 @@
 
-public class Class26 {
+public class Test26 {
 	
 //	# 문자열다루기
 //	
