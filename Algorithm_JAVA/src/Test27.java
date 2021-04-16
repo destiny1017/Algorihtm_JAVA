@@ -1,23 +1,27 @@
 public class Test27 {
 	
 	public static long solution(long n) {
-		long answer = 0;
-		String toString = n+"";
-		int[] arr = new int[toString.length()];
-		for (int i = 0; i < toString.length(); i++) {
+		String[] toString = (n+"").split("");
+		String arr = "";
+		for (int i = 0; i < toString.length; i++) {
+			int num = 0;
 			int topIdx = 0;
 			int top = 0;
-//			int num = Integer.parseInt(toString.substring(i, i+1));
-			for (int j = i; j < arr.length; j++) {
-				if(arr[j] > top) topIdx = j; 
+			for (int j = i; j < toString.length; j++) {
+				num = Integer.parseInt(toString[j]);
+				if(num > top) {
+					topIdx = j;
+					top = num;
+				}
 			}
-			
+			arr += top+"";
+			toString[topIdx] = toString[i];
 		}
-		return answer;
+		return Long.parseLong(arr);
 	}
 
 	public static void main(String[] args) {
-		System.out.println(solution(12543));
+		System.out.println(solution(394520372));
 	}
 
 }
