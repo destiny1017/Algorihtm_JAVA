@@ -29,7 +29,7 @@ public class B_Test02 {
 			System.out.println(n);
 			if(n % 3 == 0) {
 				n /= 3;
-			} else if((n-1) % 3 == 0) {
+			} else if((n-1) % 3 == 0 && (n/2) % 2 != 0) {
 				n -= 1;
 			} else if(n % 2 == 0) {
 				n /= 2;
@@ -38,7 +38,8 @@ public class B_Test02 {
 			}
 			cnt++;
 		}
-		System.out.println(cnt);
+		System.out.println(n);
+		System.out.println("result : " + cnt);
 	}
 
 }
