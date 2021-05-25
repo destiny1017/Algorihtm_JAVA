@@ -26,6 +26,7 @@ public class B_Test22 {
 			System.out.println(line);
 			i += flag;
 			if(i == num) flag *= -1;
+			else if(num == 1) break;
 		} while(i >= 1);
 	}
 
