@@ -27,9 +27,7 @@ public class B_Test25 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int music = sc.nextInt();
-		int melody = sc.nextInt();
-		System.out.println(music * (melody-1) + 1);
+		System.out.println(sc.nextInt() * (sc.nextInt()-1) + 1);
 	}
 
 }
