@@ -1,20 +1,57 @@
 package BaekJoon;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class B_Test59 {
+	
+//	# 1,2,3 더하기
+//	
+//	문제
+//	정수 4를 1, 2, 3의 합으로 나타내는 방법은 총 7가지가 있다. 합을 나타낼 때는 수를 1개 이상 사용해야 한다.
+//
+//	1+1+1+1
+//	1+1+2
+//	1+2+1
+//	2+1+1
+//	2+2
+//	1+3
+//	3+1
+//	정수 n이 주어졌을 때, n을 1, 2, 3의 합으로 나타내는 방법의 수를 구하는 프로그램을 작성하시오.
+//
+//	입력
+//	첫째 줄에 테스트 케이스의 개수 T가 주어진다. 각 테스트 케이스는 한 줄로 이루어져 있고, 정수 n이 주어진다. n은 양수이며 11보다 작다.
+//
+//	출력
+//	각 테스트 케이스마다, n을 1, 2, 3의 합으로 나타내는 방법의 수를 출력한다.
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int len = sc.nextInt();
-		int arr[] = {1,2,3};
-		for (int i = 0; i < len; i++) {
-			int num = sc.nextInt();
-			for (int j = 0; j < arr.length; j++) {
-				int sum = 0;
-				
-			}
-		}
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        int max = 0;
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            int input = sc.nextInt();
+            list.add(input);
+            if (input > max)
+                max = input;
+        }
+
+        int dp[] = new int[max + 1];
+
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 4;
+
+        for (int i = 4; i <= max; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+        }
+
+        for (Integer integer : list) {
+            System.out.println(dp[integer]);
+        }
 	}
 
 }
