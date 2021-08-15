@@ -19,7 +19,7 @@ public class B_Test76 {
 //	첫 번째 참가자부터 다섯 번째 참가자까지 순서대로 주어진다. 항상 우승자가 유일한 경우만 입력으로 주어진다.
 //
 //	출력
-//	첫째 줄에 우승자의 번호와 그가 얻은 점수를 출력한다.
+//	첫째 줄에 우승자의 번호와 그가 얻은 점수를 출력한다. 
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
