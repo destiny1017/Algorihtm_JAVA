@@ -30,8 +30,9 @@ public class B_Test99 {
 		Scanner sc = new Scanner(System.in);
 		char[] word = sc.next().toCharArray();
 		for (int i = 0; i < word.length; i++) {
-			int code = word[i];
-			if(code > 64 && code < 97) word[i] = (char) (((code-3)-65)%26+65);
+			int code = word[i]-3;
+			if(code < 65) code += 26;
+			word[i] = (char) code;
 		}
 		System.out.println(word);
 
