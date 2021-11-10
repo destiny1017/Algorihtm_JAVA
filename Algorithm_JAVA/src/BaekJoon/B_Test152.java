@@ -1,53 +1,51 @@
 package BaekJoon;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class B_Test152 {
+	
+//	# 벼락치기
+//	
+//	문제
+//	ChAOS(Chung-ang Algorithm Organization and Study) 회장이 되어 일이 많아진 준석이는 
+//	시험기간에도 일 때문에 공부를 하지 못하다가 시험 전 날이 되어버리고 말았다. 
+//	다행히도 친절하신 교수님께서 아래와 같은 힌트를 시험 전에 공지해 주셨다. 내용은 아래와 같다.
+//
+//	여러 단원을 융합한 문제는 출제하지 않는다.
+//	한 단원에 한 문제를 출제한다. 단, 그 단원에 모든 내용을 알고 있어야 풀 수 있는 문제를 낼 것이다.
+//	이런 두가지 힌트와 함께 각 단원 별 배점을 적어 놓으셨다. 
+//	어떤 단원의 문제를 맞추기 위해서는 그 단원의 예상 공부 시간만큼, 혹은 그보다 더 많이 공부하면 맞출 수 있다고 가정하자. 
+//	이때, ChAOS 회장 일로 인해 힘든 준석이를 위하여 남은 시간 동안 공부해서 얻을 수 있는 최대 점수를 구하는 프로그램을 만들어 주도록 하자.
+//
+//	입력
+//	첫째 줄에는 이번 시험의 단원 개수 N(1 ≤ N ≤ 100)과 시험까지 공부 할 수 있는 총 시간 T(1 ≤ T ≤ 10000)가 공백을 사이에 두고 주어진다.
+//
+//	둘째 줄부터 N 줄에 걸쳐서 각 단원 별 예상 공부 시간 K(1 ≤ K ≤ 1000)와 그 단원 문제의 배점 S(1 ≤ S ≤ 1000)가 공백을 사이에 두고 주어진다.
+//
+//	출력
+//	첫째 줄에 준석이가 얻을 수 있는 최대 점수를 출력한다.
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int len = sc.nextInt();
 		int time = sc.nextInt();
-		int stTime[] = new int[len];
-		int point[] = new int[len];
-		double eff[] = new double[len];
-//		int effRank[] = new int[len];
-		for (int i = 0; i < len; i++) {
-			stTime[i] = sc.nextInt();
-			point[i] = sc.nextInt();
-			eff[i] = (double) point[i] / stTime[i];
+		int studyInfo[][] = new int[len+1][2];
+		for (int i = 1; i <= len; i++) {
+			studyInfo[i][0] = sc.nextInt();
+			studyInfo[i][1] = sc.nextInt();
 		}
-		for (int i = 0; i < len; i++) {
-			for (int j = 1; j < len; j++) {
-				if(eff[j] > eff[i]) {
-					double tmpEff = eff[i];
-					int tmpStTime = stTime[i];
-					int tmpPoint = point[i];
-					
-					eff[i] = eff[j];
-					stTime[i] = stTime[j];
-					point[i] = point[j];
-					
-					eff[j] = tmpEff;
-					stTime[j] = tmpStTime;
-					point[j] = tmpPoint;
+		
+		int dp[][] = new int[len+1][time+1];
+		for (int i = 1; i <= len; i++) {
+			for (int j = 0; j <= time; j++) {
+				if(studyInfo[i][0] <= j) {
+					dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-studyInfo[i][0]] + studyInfo[i][1]);
+				} else {
+					dp[i][j] = dp[i-1][j];
 				}
 			}
 		}
-		int useHour = 0;
-		int totalPoint = 0;
-		for (int i = 0; i < eff.length; i++) {
-			if(useHour + stTime[i] > time) {
-				continue;
-			}
-			useHour += stTime[i];
-			totalPoint += point[i];
-		}
-		System.out.println(Arrays.toString(eff));
-		System.out.println(Arrays.toString(stTime));
-		System.out.println(Arrays.toString(point));
-		System.out.println(totalPoint);
+		System.out.println(dp[len][time]);
 
 	}
 
