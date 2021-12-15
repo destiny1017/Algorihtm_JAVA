@@ -10,12 +10,11 @@ public class B_Test176 {
 		for (int i = 0; i < len; i++) {
 			String carNum[] = sc.next().split("-");
 			int total = 0;
-			System.out.println((int)carNum[0].charAt(0));
-			total += (int)carNum[0].charAt(0) - 64;
-			total += (int)carNum[0].charAt(1) - 64;
-			total += (int)carNum[0].charAt(2) - 64;
-			total += Integer.parseInt(carNum[1]);
-			System.out.println(total < 100 ? "nice" : "not nice");
+			for (int j = 0; j < 3; j++) {
+				total += ((int)carNum[0].charAt(j) - 65) * Math.pow(26, (2-j));
+			}
+			total -= Integer.parseInt(carNum[1]);
+			System.out.println(Math.abs(total) < 100 ? "nice" : "not nice");
 		}
 		
 	}
