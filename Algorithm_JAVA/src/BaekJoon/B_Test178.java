@@ -2,7 +2,7 @@ package BaekJoon;
 
 import java.util.Scanner;
 
-public class B_Test {
+public class B_Test178 {
 	
 //	# 창영마을
 //	
