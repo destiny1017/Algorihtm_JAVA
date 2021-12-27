@@ -34,7 +34,7 @@ public class B_Test184 {
 			for (int j = 0; j < i; j++) {
 				val += arr[j] * arr[i-j-1]; 
 			}
-			arr[i] = val;
+			arr[i] = val; 
 		}
 		System.out.println(arr[sc.nextInt()]);
 	}
