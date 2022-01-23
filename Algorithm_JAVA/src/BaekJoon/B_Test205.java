@@ -1,5 +1,6 @@
 package BaekJoon;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -31,9 +32,7 @@ public class B_Test205 {
 	static int m;
 	static int arr[][];
 	static int visit[][];
-	static Queue<Integer> qy = new LinkedList<Integer>();
-	static Queue<Integer> qx = new LinkedList<Integer>();
-	static Queue<Integer> qc = new LinkedList<Integer>();
+	static ArrayList<int[]> mainQ = new ArrayList<>();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -52,50 +51,35 @@ public class B_Test205 {
 		n--;
 		m--;
 		
-		qy.offer(1);
-		qx.offer(1);
-		qc.offer(1);
+		mainQ.add(new int[] {1,1});
+		visit[1][1] = 1;
 		
-		while(!qy.isEmpty()) {
-			int cy = qy.poll();
-			int cx = qx.poll();
-			int cc = qc.poll();
-			
-			if(visit[cy][cx] == 1) continue;
-			visit[cy][cx] = 1;
-			
-			if(cy == n && cx == m) {
-				System.out.println(cc);
-				break;
+		int cnt = 0;
+		
+		while(!mainQ.isEmpty()) {
+			ArrayList<int[]> subQ = new ArrayList<>();
+			subQ.addAll(mainQ);
+			mainQ.clear();
+			cnt++;
+			for (int[] node : subQ) {
+				int y = node[0];
+				int x = node[1];
+				if(y == n && x == m) break;
+				y = node[0]-1;
+				check(y,x);
+				
+				y = node[0]+1;
+				check(y,x);
+				
+				y = node[0];
+				x = node[1]-1;
+				check(y,x);
+				
+				x = node[1]+1;
+				check(y,x);
 			}
-			
-			// 상
-			if(check(cy-1,cx)) {
-				qy.offer(cy-1);
-				qx.offer(cx);
-				qc.offer(cc+1);
-			}
-			// 하
-			if(check(cy+1,cx)) {
-				qy.offer(cy+1);
-				qx.offer(cx);
-				qc.offer(cc+1);
-			}
-			// 좌
-			if(check(cy,cx-1)) {
-				qy.offer(cy);
-				qx.offer(cx-1);
-				qc.offer(cc+1);
-			}
-			// 우
-			if(check(cy,cx+1)) {
-				qy.offer(cy);
-				qx.offer(cx+1);
-				qc.offer(cc+1);
-			}
-			
-			
 		}
+		System.out.println(cnt);
 		
 	}
 	
@@ -107,8 +91,10 @@ public class B_Test205 {
 		else if(visit[y][x] == 1) {
 			return false;
 		}
+		arr[y][x] = 1;
+		visit[y][x] = 1;
+		mainQ.add(new int[] {y,x});
 		return true;
-			
 	}
 
 }
