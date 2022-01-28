@@ -2,7 +2,7 @@ package BaekJoon;
 
 import java.util.Scanner;
 
-public class B_209 {
+public class B_Test209 {
 	
 //	# OX퀴즈
 //	
