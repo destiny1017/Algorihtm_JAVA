@@ -22,36 +22,24 @@ public class B_Test06 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int len = sc.nextInt();
-		String max = "";
-		long maxNum = 0;
-		for (int i = 0; i < len; i++) {
-			max += "9";
-		}
-		maxNum = Long.parseLong(max);
-		int cnt = 0;
-		for (int i = 0; i <= maxNum; i++) {
-			char[] arr = (i+"").toCharArray();
-			boolean flag = false;
-			for (int j = 0; j < arr.length; j++) {
-				if(arr.length == 1) {
-//					System.out.print("a" + i);
-					flag = true;
+		long[] dp[] = new long[1001][10];
+		for (int i = 0; i < 10; i++) dp[1][i] = 1;
+		
+		for (int i = 2; i < dp.length; i++) {
+			for (int j = 0; j < 10; j++) {
+				long sum = 0;
+				for (int k = 0; k <= j; k++) {
+					sum += dp[i-1][k];
 				}
-				else if(j > 0) {
-					if(arr[j] >= arr[j-1]) {
-//						System.out.print("b" + i);
-						flag = true;
-					} else {
-//						System.out.print("c" + i);
-						flag = false;
-						break;
-					}
-				}
+				dp[i][j] = sum%10007;
 			}
-			if(flag) cnt++;
-//			System.out.println(", cnt:" + cnt);
 		}
-		System.out.println(cnt);
+		
+		long ans = 0;
+		for (int i = 0; i < 10; i++) {
+			ans += dp[len][i];
+		}
+		System.out.println(ans%10007);
 	}
 
 }
