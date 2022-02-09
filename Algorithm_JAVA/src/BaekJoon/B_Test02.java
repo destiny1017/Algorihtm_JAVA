@@ -1,5 +1,6 @@
 package BaekJoon;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class B_Test02 {
@@ -23,23 +24,33 @@ public class B_Test02 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+		ArrayList<Integer> list = new ArrayList<>();
 		int cnt = 0;
-		while(n != 1) {
-			System.out.println(n);
-			if(n % 3 == 0) {
-				n /= 3;
-			} else if((n-1) % 3 == 0 && (n/2) % 2 != 0) {
-				n -= 1;
-			} else if(n % 2 == 0) {
-				n /= 2;
-			} else {
-				n -= 1;
+		boolean flag = true;
+		list.add(sc.nextInt());
+		while(true) {
+			ArrayList<Integer> tmpList = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {
+				int num = list.get(i);
+				if(num == 1) {
+					flag = false;
+					break;
+				}
+				if(num % 3 == 0) {
+					tmpList.add(num / 3);
+				}
+				if(num % 2 == 0) {
+					tmpList.add(num / 2);
+				}
+				tmpList.add(num - 1);
 			}
-			cnt++;
+			
+			if(flag) {
+				list = tmpList;
+				cnt++;
+			} else break;
 		}
-		System.out.println(n);
-		System.out.println("result : " + cnt);
+		System.out.println(cnt);
 	}
 
 }
