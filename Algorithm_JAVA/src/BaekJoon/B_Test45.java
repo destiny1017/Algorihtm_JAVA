@@ -1,6 +1,9 @@
 package BaekJoon;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class B_Test45 {
 	
@@ -15,26 +18,18 @@ public class B_Test45 {
 //	출력
 //	첫째 줄부터 N개의 줄에 오름차순으로 정렬한 결과를 한 줄에 하나씩 출력한다.
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int[] a = new int[sc.nextInt()];
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int[] a = new int[Integer.parseInt(br.readLine())];
 		for (int i = 0; i < a.length; i++) {
-			a[i] = sc.nextInt(); 
+			a[i] = Integer.parseInt(br.readLine()); 
 		}
-		int b;
-		for(int i = 0 ; i <  a.length -1 ; i ++) {
-			for(int j = i+1 ; j < a.length ; j ++) {
-				if(a[i] > a[j]) {
-					b = a[j];
-					a[j] = a[i];
-					a[i] = b;
-				}
-			}
-		}
-		
+		Arrays.sort(a);
+		StringBuilder sb = new StringBuilder();
 		for(int i = 0 ; i <  a.length ; i ++) {
-			System.out.println(a[i]);
+			sb.append(a[i] + "\n");
 		}
+		System.out.println(sb.toString());
 	}
 
 }
