@@ -19,17 +19,22 @@ public class B_Test48 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt(), top = -1000;
+		int num = sc.nextInt();
+		int max;
 		int arr[] = new int[num];
-		for (int i = 0; i < arr.length; i++) arr[i] = sc.nextInt();
-		for (int i = 0; i < num; i++) {
-			int sum = 0;
-			for (int j = i; j < num; j++) {
-				sum += arr[j];
-				if(sum > top) top = sum;
-			}
+		int dp[] = new int[num];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = sc.nextInt();
 		}
-		System.out.println(top);
+		dp[0] = arr[0];
+		max = dp[0];
+		
+		for (int i = 1; i < dp.length; i++) {
+			dp[i] = Math.max(dp[i-1] + arr[i], arr[i]);
+			if(dp[i] > max) max = dp[i];
+		}
+		
+		System.out.println(max);
 	}
 
 }
