@@ -17,22 +17,18 @@ public class B_Test20 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int m = sc.nextInt(), n = sc.nextInt();
-		for (int i = n; i > 0; i--) {
-			if(m % i == 0) {
-				if(n % i == 0) {
-					System.out.println(i);
-					break;
-				}
-			}
-		}
+		int n = sc.nextInt();
+		int m = sc.nextInt();
 		
-		for (int i = m; i < 100000; i+=m) {
-			if(i % n == 0) {
-				System.out.println(i);
-				break;
-			}
+		System.out.println(n * m / gcd(n, m));
+	}
+	
+	static int gcd(int a, int b) {
+		if(b == 0) {
+			System.out.println(a);
+			return a;
 		}
+		return gcd(b, a % b);
 	}
 
 }
