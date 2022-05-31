@@ -8,6 +8,8 @@ public class Combination {
 	static int[] target;
 	// 대상 숫자를 담아둘 배열.
 	static int[] result;
+	// 방문 노드 확인 배열
+	static boolean[] visited;
 	
 	static int num;
 	
@@ -17,8 +19,10 @@ public class Combination {
 		
 		num = 2;
 		result = new int[num];
+		visited = new boolean[target.length];
 		
-		combination(0, 0);
+//		combination(0, 0);
+		combination(0, target.length, num);
 	}
 
 	// 조합 메서드(cnt는 선택 횟수, idx는 다음 대상을 선택할때 집합에서 탐색을 시작할 인덱스).
@@ -37,4 +41,21 @@ public class Combination {
 			combination(cnt + 1, i + 1);
 		}
 	}
+	
+	// 백트래킹 방식
+	static void combination(int start, int n, int r) {
+	    if(r == 0) {
+	        System.out.println(Arrays.toString(target));
+	        System.out.println(Arrays.toString(visited));
+	        System.out.println(n);
+	        return;
+	    } 
+
+	    for(int i=start; i<n; i++) {
+	        visited[i] = true;
+	        combination(i + 1, n, r - 1);
+	        visited[i] = false;
+	    }
+	}
+	   
 }
