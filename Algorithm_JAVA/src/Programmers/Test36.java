@@ -16,7 +16,10 @@ public class Test36 {
 	// 4. 뺀 조합배열 오름차순으로 정렬 후 리턴
 	
 	// 등장하는 메뉴 알파벳
-	static String[] menu;
+	static Character menu[];
+	
+	// 방문 확인 배열
+	static boolean visited[];
 	
 	// 가능한 모든 조합 배열
 	static HashMap<Integer, ArrayList<String[]>> combMap = new HashMap<>();
@@ -42,20 +45,21 @@ public class Test36 {
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"}, new int[] {2,3,4});
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"}, new int[] {2,3,4,5,6});
 //		solution(new String[] {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"}, new int[] {2,3,5});
 //		solution(new String[] {"XYZ", "XWY", "WXA"}, new int[] {2,3,4});
 	}
 	
     public static String[] solution(String[] orders, int[] course) {
     	// 등장하는 메뉴 배열 뽑기
-    	HashSet<String> tmpMenu = new HashSet<>();
+    	HashSet<Character> tmpMenu = new HashSet<>();
     	for (String str : orders) {
 			for (int i = 0; i < str.length(); i++) {
-				tmpMenu.add(str.charAt(i) + "");
+				tmpMenu.add(str.charAt(i));
 			}
 		}
-    	menu = tmpMenu.toArray(new String[tmpMenu.size()]);
+    	menu = tmpMenu.toArray(new Character[0]);
+    	visited = new boolean[menu.length];
     	
     	// 조합 가능한 모든 배열 구하기
     	for (int num : course) {
@@ -114,7 +118,7 @@ public class Test36 {
     	}
     	
     	for (int i = idx; i < menu.length; i++) {
-			tmp[cnt] = menu[i];
+			tmp[cnt] = menu[i].toString();
 			combination(cnt+1, i+1, num);
 		}
     	
