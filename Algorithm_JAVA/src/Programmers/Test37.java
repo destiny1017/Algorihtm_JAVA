@@ -1,7 +1,7 @@
 package Programmers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class Test37 {
 	
@@ -16,41 +16,38 @@ public class Test37 {
 	}
 	
     public static String[] solution(String[] record) {
-    	StringTokenizer st;
+    	String[] st;
     	HashMap<String, String> userInfo = new HashMap<>();
-    	int messageCnt = record.length;
     	for (String value : record) {
-			st = new StringTokenizer(value, " ");
-			String action = st.nextToken();
-			String id = st.nextToken();
-			String name = st.hasMoreTokens() ? st.nextToken() : "";
+			st = value.split(" ");
+			String action = st[0];
+			String id = st[1];
+			String name = st.length > 2 ? st[2] : "";
 			if("Enter".equals(action)) {
 				userInfo.put(id, name);
 			} else if("Change".equals(action)) {
-				messageCnt--;
 				userInfo.put(id, name);
 			}
 			st = null;
 		}
-    	
-    	String[] answer = new String[messageCnt];
+    	ArrayList<String> resultList = new ArrayList<>();
+    	String[] answer;
     	for (int i = 0; i < record.length; i++) {
-    		st = new StringTokenizer(record[i], " ");
-    		String action = st.nextToken();
+    		st = record[i].split(" ");
+    		String action = st[0];
     		if(!"Change".equals(action)) {
-    			String id = st.nextToken();
+    			String id = st[1];
     			String message = "";
     			if("Enter".equals(action)) {
     				message = userInfo.get(id) + "님이 들어왔습니다.";
     			} else if("Leave".equals(action)){
     				message = userInfo.get(id) + "님이 나갔습니다.";
     			}
-    			answer[i] = message;
-    			System.out.println(message);
+    			resultList.add(message);
     		}
     		st = null;
 		}
-    	
+    	answer = resultList.toArray(new String[0]);
         return answer;
     }
 }
