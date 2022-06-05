@@ -2,15 +2,14 @@ package BaekJoon;
 
 import java.util.Scanner;
 
-public class B_Test240 {
+public class B_Test242 {
 	
-//	# N과 M(1) 순열
+//	# N과 M(3) 중복순열
 	
 	static int n; // 대상 요소의 개수
 	static int m; // 경우의 수의 개수
 	
 	static int[] arr;
-	static boolean visit[];
 	
 	static StringBuilder sb;
 
@@ -20,7 +19,6 @@ public class B_Test240 {
 		m = sc.nextInt();
 		
 		arr = new int[m];
-		visit = new boolean[n];
 		
 		sb = new StringBuilder();
 		
@@ -38,12 +36,8 @@ public class B_Test240 {
 		}
 		
 		for (int i = 0; i < n; i++) {
-			if(visit[i] == false) {
-				visit[i] = true;
-				arr[depth] = i+1;
-				recursive(depth+1);
-				visit[i] = false;
-			}
+			arr[depth] = i+1;
+			recursive(depth+1);
 		}
 	}
 
