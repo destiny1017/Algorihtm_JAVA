@@ -7,7 +7,9 @@ import java.util.StringTokenizer;
 
 public class B_Test239 {
 	
-	// 동서남북 좌표이동용 배열
+	// # 섬의 개수
+	
+	// 8방향 좌표이동용 배열
 	static int dx[] = {1, -1, 0, 0, 1, -1, -1, 1};
 	static int dy[] = {0, 0, 1, -1, 1, -1, 1, -1};
 	
