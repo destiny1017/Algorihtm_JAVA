@@ -1,10 +1,12 @@
 package BaekJoon;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class B_Test44 {
 	
 //	# 피보나치 함수
+//	https://www.acmicpc.net/problem/1003
 //	
 //	문제
 //	다음 소스는 N번째 피보나치 수를 구하는 C++ 함수이다.
@@ -43,13 +45,14 @@ public class B_Test44 {
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
 		int sequence[] = new int[41];
+		sequence[0] = 0;
+		sequence[1] = 1;
+		for (int i = 2; i <= 40; i++) {
+			sequence[i] = sequence[i-2] + sequence[i-1];
+		}
+		
 		for (int j = 0; j < num; j++) {
 			int val = sc.nextInt();
-			sequence[0] = 0;
-			sequence[1] = 1;
-			for (int i = 2; i <= val; i++) {
-				sequence[i] = sequence[i-2] + sequence[i-1];
-			}
 			System.out.println(val == 0 ? "1 0" : sequence[val-1] + " " + sequence[val]);
 		}
 	}
